@@ -53,9 +53,7 @@
         const mouse = {
             x: -9999,
             y: -9999,
-            radius: 100,
-            vx: 0,
-            vy: 0
+            radius: 100
         };
     
         class Heart {
@@ -111,8 +109,9 @@
     
                 if (distance < mouse.radius) {
                     const angle = Math.atan2(dy, dx);
-                    this.vx += Math.cos(angle) * 0.5; // Менший вплив
-                    this.vy += Math.sin(angle) * 0.5; // Менший вплив
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    this.vx += Math.cos(angle) * force * 0.5; // Менший вплив
+                    this.vy += Math.sin(angle) * force * 0.5; // Менший вплив
                     this.targetGlow = 50;
                 } else {
                     this.vx *= 0.95; // Плавне згасання швидкості
@@ -147,41 +146,31 @@
             setInterval(addHeart, 200);
         }
     
-        let lastMousePosition = { x: mouse.x, y: mouse.y };
-    
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
     
+        // Відстеження миші
         window.addEventListener('mousemove', (e) => {
-            mouse.vx = e.clientX - lastMousePosition.x;
-            mouse.vy = e.clientY - lastMousePosition.y;
             mouse.x = e.clientX;
             mouse.y = e.clientY;
-            lastMousePosition = { x: mouse.x, y: mouse.y };
         });
     
-        // Обробка для мобільних пристроїв
+        // Для мобільних пристроїв
         window.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
-            mouse.vx = touch.clientX - lastMousePosition.x;
-            mouse.vy = touch.clientY - lastMousePosition.y;
             mouse.x = touch.clientX;
             mouse.y = touch.clientY;
-            lastMousePosition = { x: mouse.x, y: mouse.y };
         });
     
         window.addEventListener('touchend', () => {
             mouse.x = -9999;
             mouse.y = -9999;
-            mouse.vx = 0;
-            mouse.vy = 0;
         });
     
         spawnHearts();
         animate();
     </script>
-    
 </body>
 </html>
