@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Glowing Hearts</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black; /* Темний фон для контрасту */
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="heartCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        const maxHearts = 100;
+
+        let mouse = { x: 0, y: 0, radius: 100 }; // Радіус впливу курсора
+
+        class Heart {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -50;
+                this.size = Math.random() * 15 + 5;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.opacity = 0;
+                this.fadeInSpeed = Math.random() * 0.02 + 0.01;
+                this.swingAmplitude = Math.random() * 20 + 10;
+                this.swingFrequency = Math.random() * 0.02 + 0.01;
+                this.age = 0;
+                this.vx = 0; // Горизонтальна швидкість після взаємодії
+                this.vy = 0; // Вертикальна швидкість після взаємодії
+                this.glow = `rgba(255, 0, 0, ${Math.random() * 0.5 + 0.5})`; // Світіння
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = 'red';
+                ctx.shadowColor = this.glow;
+                ctx.shadowBlur = 15; // Інтенсивність світіння
+                ctx.beginPath();
+                const x = this.x + Math.sin(this.age * this.swingFrequency) * this.swingAmplitude;
+                const y = this.y;
+                const size = this.size;
+                ctx.moveTo(x, y);
+                ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+                ctx.bezierCurveTo(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+
+            update() {
+                this.age++;
+                if (this.opacity < 1) {
+                    this.opacity += this.fadeInSpeed;
+                }
+                this.x += this.vx; // Додаємо горизонтальний рух
+                this.y += this.vy + this.speed;
+
+                // Ефект відскоку, якщо курсор взаємодіє
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    const angle = Math.atan2(dy, dx);
+                    this.vx = -Math.cos(angle) * 5; // Розлітаються від курсора
+                    this.vy = -Math.sin(angle) * 5;
+                } else {
+                    // Повернення до стандартної швидкості
+                    this.vx *= 0.98; // Поступове сповільнення
+                    this.vy *= 0.98;
+                }
+
+                if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
+                    this.reset();
+                }
+            }
+        }
+
+        function addHeart() {
+            if (hearts.length < maxHearts) {
+                hearts.push(new Heart());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach((heart) => {
+                heart.update();
+                heart.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        function spawnHearts() {
+            setInterval(addHeart, 200); // Додає нове серце кожні 200 мс
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        spawnHearts();
+        animate();
+    </script>
+</body>
+</html>
