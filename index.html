@@ -46,23 +46,23 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
+    
         const hearts = [];
         const maxHearts = 100;
-
+    
         const mouse = {
             x: -9999,
             y: -9999,
-            radius: 30,
-            vx: 0, // Швидкість руху миші по осі X
-            vy: 0  // Швидкість руху миші по осі Y
+            radius: 100,
+            vx: 0,
+            vy: 0
         };
-
+    
         class Heart {
             constructor() {
                 this.reset();
             }
-
+    
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * -50;
@@ -78,7 +78,7 @@
                 this.targetGlow = 10;
                 this.age = 0;
             }
-
+    
             draw() {
                 ctx.save();
                 ctx.globalAlpha = this.opacity;
@@ -96,7 +96,7 @@
                 ctx.fill();
                 ctx.restore();
             }
-
+    
             update() {
                 this.age++;
                 if (this.opacity < 1) {
@@ -104,36 +104,36 @@
                 }
                 this.x += this.vx;
                 this.y += this.vy + this.speed;
-
+    
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-
+    
                 if (distance < mouse.radius) {
                     const angle = Math.atan2(dy, dx);
-                    this.vx = mouse.vx * 0.5 - Math.cos(angle) * 2;
-                    this.vy = mouse.vy * 0.5 - Math.sin(angle) * 2;
-                    this.targetGlow = 70;
+                    this.vx += Math.cos(angle) * 0.5; // Менший вплив
+                    this.vy += Math.sin(angle) * 0.5; // Менший вплив
+                    this.targetGlow = 50;
                 } else {
-                    this.vx *= 0.98;
-                    this.vy *= 0.98;
+                    this.vx *= 0.95; // Плавне згасання швидкості
+                    this.vy *= 0.95;
                     this.targetGlow = 10;
                 }
-
+    
                 this.glowIntensity += (this.targetGlow - this.glowIntensity) * 0.1;
-
+    
                 if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
                     this.reset();
                 }
             }
         }
-
+    
         function addHeart() {
             if (hearts.length < maxHearts) {
                 hearts.push(new Heart());
             }
         }
-
+    
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             hearts.forEach((heart) => {
@@ -142,18 +142,18 @@
             });
             requestAnimationFrame(animate);
         }
-
+    
         function spawnHearts() {
             setInterval(addHeart, 200);
         }
-
+    
         let lastMousePosition = { x: mouse.x, y: mouse.y };
-
+    
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-
+    
         window.addEventListener('mousemove', (e) => {
             mouse.vx = e.clientX - lastMousePosition.x;
             mouse.vy = e.clientY - lastMousePosition.y;
@@ -161,9 +161,27 @@
             mouse.y = e.clientY;
             lastMousePosition = { x: mouse.x, y: mouse.y };
         });
-
+    
+        // Обробка для мобільних пристроїв
+        window.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            mouse.vx = touch.clientX - lastMousePosition.x;
+            mouse.vy = touch.clientY - lastMousePosition.y;
+            mouse.x = touch.clientX;
+            mouse.y = touch.clientY;
+            lastMousePosition = { x: mouse.x, y: mouse.y };
+        });
+    
+        window.addEventListener('touchend', () => {
+            mouse.x = -9999;
+            mouse.y = -9999;
+            mouse.vx = 0;
+            mouse.vy = 0;
+        });
+    
         spawnHearts();
         animate();
     </script>
+    
 </body>
 </html>
