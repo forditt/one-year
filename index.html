@@ -53,7 +53,8 @@
         const mouse = {
             x: -9999,
             y: -9999,
-            radius: 100
+            radius: 100,
+            isTouching: false // Відстеження активності дотику
         };
     
         class Heart {
@@ -107,14 +108,14 @@
                 const dy = mouse.y - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
     
-                if (distance < mouse.radius) {
+                if (distance < mouse.radius && mouse.isTouching) {
                     const angle = Math.atan2(dy, dx);
                     const force = (mouse.radius - distance) / mouse.radius;
-                    this.vx += Math.cos(angle) * force * 0.5; // Менший вплив
-                    this.vy += Math.sin(angle) * force * 0.5; // Менший вплив
+                    this.vx += Math.cos(angle) * force * 0.5;
+                    this.vy += Math.sin(angle) * force * 0.5;
                     this.targetGlow = 50;
                 } else {
-                    this.vx *= 0.95; // Плавне згасання швидкості
+                    this.vx *= 0.95;
                     this.vy *= 0.95;
                     this.targetGlow = 10;
                 }
@@ -155,22 +156,33 @@
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
+            mouse.isTouching = true;
         });
     
         // Для мобільних пристроїв
+        window.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            mouse.x = touch.clientX;
+            mouse.y = touch.clientY;
+            mouse.isTouching = true;
+        });
+    
         window.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
             mouse.x = touch.clientX;
             mouse.y = touch.clientY;
+            mouse.isTouching = true;
         });
     
         window.addEventListener('touchend', () => {
             mouse.x = -9999;
             mouse.y = -9999;
+            mouse.isTouching = false; // Вимкнення активності дотику
         });
     
         spawnHearts();
         animate();
     </script>
+    
 </body>
 </html>
