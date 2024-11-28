@@ -1,0 +1,187 @@
+ /* Загальний стиль */
+ body {
+  margin: 0;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
+  overflow-x: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
+}
+
+.header {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-size: 2.5rem;
+  color: white;
+  margin-top: 2vh;
+  max-width: 90%;
+  word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Стиль для скляного блоку */
+.glass-box {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  padding: 50px;
+  background: rgba(71, 71, 71, 0.185);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 5vh auto;
+}
+
+/* Стиль для кнопки */
+.surprise-button {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  padding: 15px 30px;
+  color: white;
+  background: linear-gradient(135deg, #585858, #3b3b3b);
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.surprise-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0px 25px rgba(153, 153, 153, 0.5);
+}
+
+.surprise-button:active {
+  transform: scale(1.05);
+  box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
+}
+
+.surprise-text {
+  margin-top: 20px;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  animation: fade-in 0.8s ease forwards;
+}
+
+/* Popup styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup-content {
+  background: rgb(48, 48, 48);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: popup-show 0.4s ease forwards;
+  width: 90%;
+  max-width: 400px;
+}
+
+.popup-close {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#popupMessage {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+@keyframes popup-show {
+  from {
+      transform: scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Анімація появи тексту */
+@keyframes fade-in {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .header {
+      font-size: 2rem;
+  }
+
+  .glass-box {
+      width: 80%;
+      padding: 15px;
+  }
+
+  .surprise-button {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+      font-size: 1.5rem;
+  }
+
+  .glass-box {
+      width: 90%;
+      padding: 10px;
+  }
+
+  .surprise-button {
+      font-size: 0.8rem;
+      padding: 8px 15px;
+  }
+}

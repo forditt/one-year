@@ -4,249 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Glowing Hearts</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: black;
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .glass-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            max-width: 600px;
-            padding: 20px;
-            background: rgba(71, 71, 71, 0.185);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .timer {
-    text-align: center;
-    color: white;
-    margin-top: 20px;
-    font-family: Arial, sans-serif;
-}
-
-.timer h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.timer p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff5e5e; /* Червоний акцент */
-}
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<header class="header">
+    <h2><div id="typingText"></div></h2>
+</header>
 <body>
-    <canvas id="heartCanvas"></canvas>
-    <div class="glass-box">
-        <h1>Інтерактивні серденька <З</h1>
-        <p>я люблю Яну</p>
-        <p id="timeTogether"></p>
-    </div>
-    <script>
-        const startDate = new Date('2023-12-08T18:40:00'); // Дата, коли ви почали зустрічатися
+    <body>
+        <canvas id="heartCanvas"></canvas>
+        <div class="glass-box">
+            <p id="timeTogether"></p>
+            <p>ІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВІВАІВАІВ</p>
+            <button class="surprise-button" id="surpriseButton">Натисни мене</button>
+        </div>
     
-        function updateTime() {
-            const now = new Date();
-            const diff = now - startDate;
-    
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-    
-            const timeTogether = `
-                ${days} днів, ${hours} годин, ${minutes} хвилин, ${seconds} секунд
-            `;
-    
-            document.getElementById('timeTogether').textContent = timeTogether;
-        }
-    
-        // Оновлюємо таймер щосекунди
-        setInterval(updateTime, 1000);
-        updateTime(); // Виклик для початкового завантаження
-    </script>
-    
-    <script>
-        const canvas = document.getElementById('heartCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    
-        const hearts = [];
-        const maxHearts = 100;
-    
-        const mouse = {
-            x: -9999,
-            y: -9999,
-            radius: 100,
-            isTouching: false, // Відстеження активності дотику
-        };
-    
-        class Heart {
-            constructor() {
-                this.reset();
-            }
-    
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * -50;
-                this.size = Math.random() * 15 + 5;
-                this.speed = Math.random() * 1.5 + 0.5;
-                this.opacity = 0;
-                this.fadeInSpeed = Math.random() * 0.02 + 0.01;
-                this.swingAmplitude = Math.random() * 20 + 10;
-                this.swingFrequency = Math.random() * 0.02 + 0.01;
-                this.vx = 0;
-                this.vy = 0;
-                this.glowIntensity = 10;
-                this.targetGlow = 10;
-                this.age = 0;
-                this.rotation = 0; // Початковий нахил
-            }
-    
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = 'red';
-                ctx.shadowColor = `rgba(255, 0, 0, ${Math.min(this.opacity + 0.5, 1)})`;
-                ctx.shadowBlur = this.glowIntensity;
-    
-                const x = this.x + Math.sin(this.age * this.swingFrequency) * this.swingAmplitude;
-                const y = this.y;
-    
-                ctx.translate(x, y);
-                ctx.rotate(this.rotation);
-                ctx.beginPath();
-                const size = this.size;
-                ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(-size / 2, -size / 2, -size, size / 3, 0, size);
-                ctx.bezierCurveTo(size, size / 3, size / 2, -size / 2, 0, 0);
-                ctx.closePath();
-                ctx.fill();
-                ctx.restore();
-            }
-    
-            update() {
-                this.age++;
-                if (this.opacity < 1) {
-                    this.opacity += this.fadeInSpeed;
-                }
-                this.x += this.vx;
-                this.y += this.vy + this.speed;
-    
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-    
-                if (mouse.isTouching && distance < mouse.radius) {
-                    const angle = Math.atan2(dy, dx);
-                    const force = (mouse.radius - distance) / mouse.radius;
-                    this.vx += Math.cos(angle) * force * 0.5;
-                    this.vy += Math.sin(angle) * force * 0.5;
-                    this.targetGlow = 50;
-    
-                    // Нахил серця у напрямку до курсора
-                    this.rotation = angle;
-                } else {
-                    this.vx *= 0.95;
-                    this.vy *= 0.95;
-                    this.targetGlow = 10;
-    
-                    // Плавне повернення до початкового положення
-                    this.rotation *= 0.95;
-                }
-    
-                this.glowIntensity += (this.targetGlow - this.glowIntensity) * 0.1;
-    
-                if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
-                    this.reset();
-                }
-            }
-        }
-    
-        function addHeart() {
-            if (hearts.length < maxHearts) {
-                hearts.push(new Heart());
-            }
-        }
-    
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            hearts.forEach((heart) => {
-                heart.update();
-                heart.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-    
-        function spawnHearts() {
-            setInterval(addHeart, 200);
-        }
-    
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    
-        // Відстеження миші
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            mouse.isTouching = true;
-        });
-    
-        window.addEventListener('mouseup', () => {
-            mouse.isTouching = false;
-        });
-    
-        // Для мобільних пристроїв
-        window.addEventListener('touchstart', (e) => {
-            const touch = e.touches[0];
-            mouse.x = touch.clientX;
-            mouse.y = touch.clientY;
-            mouse.isTouching = true;
-        });
-    
-        window.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            mouse.x = touch.clientX;
-            mouse.y = touch.clientY;
-            mouse.isTouching = true;
-        });
-    
-        window.addEventListener('touchend', () => {
-            mouse.x = -9999; // Скидання координат за межі екрана
-            mouse.y = -9999;
-            mouse.isTouching = false; // Вимкнення активності дотику
-        });
-    
-        window.addEventListener('touchcancel', () => {
-            mouse.x = -9999;
-            mouse.y = -9999;
-            mouse.isTouching = false;
-        });
-    
-        spawnHearts();
-        animate();
-    </script>
-    
-    
+        <!-- Спливаюче вікно -->
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <span class="popup-close" id="popupClose">&times;</span>
+                <p id="popupMessage"></p>
+            </div>
+        </div>
+
+    <script src="js/hearts.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/typing.js"></script>
+    <script src="js/surprise.js"></script>
 </body>
 </html>
+
+
+
