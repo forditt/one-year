@@ -8,7 +8,7 @@
   justify-content: flex-start;
   height: auto;
   min-height: 100vh;
-  overflow-y: auto; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
+  overflow-y: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
   overflow-x: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
 }
 
@@ -347,7 +347,7 @@ canvas {
 .popup-close {
   font-size: 20px;
   top: 10px;
-  right: 10px;
+  right: 15px;
 }
 
 @media (pointer: coarse) {
