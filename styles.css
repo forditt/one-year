@@ -365,6 +365,8 @@ canvas {
 }
 
 * {
-  -webkit-tap-highlight-color: transparent; /* Для iOS і Android */
+  -webkit-user-select: none; /* Забороняє вибір тексту */
+  -webkit-touch-callout: none; /* Забороняє контекстне меню на iOS */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Забирає виділення */
   outline: none; /* Для усунення стандартного виділення */
 }
