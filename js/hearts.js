@@ -1,11 +1,19 @@
+// Знаходимо canvas та отримуємо контекст
 const canvas = document.getElementById('heartCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
+// Знаходимо елемент "glass-box"
+const glassBox = document.querySelector('.glass-box');
+
+// Налаштування canvas на розміри сторінки
+function resizeCanvas() {
+    canvas.width = Math.max(document.documentElement.scrollWidth, window.innerWidth);
+    canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+}
+
+// Параметри
 const hearts = [];
-const maxHearts = 100;
-
+let maxHearts = 25; // Змінна для кількості сердець
 const mouse = {
     x: -9999,
     y: -9999,
@@ -13,6 +21,7 @@ const mouse = {
     isTouching: false,
 };
 
+// Клас Heart
 class Heart {
     constructor() {
         this.reset();
@@ -85,18 +94,25 @@ class Heart {
 
         this.glowIntensity += (this.targetGlow - this.glowIntensity) * 0.1;
 
-        if (this.y > canvas.height || this.x < 0 || this.x > canvas.width) {
+        if (
+            this.y > canvas.height + this.size ||
+            this.x < -this.size ||
+            this.x > canvas.width + this.size ||
+            this.y < -this.size
+        ) {
             this.reset();
         }
     }
 }
 
+// Додавання сердець
 function addHeart() {
     if (hearts.length < maxHearts) {
         hearts.push(new Heart());
     }
 }
 
+// Анімація
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     hearts.forEach((heart) => {
@@ -106,52 +122,77 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+// Спавн сердець
 function spawnHearts() {
     setInterval(addHeart, 200);
 }
 
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// Відстеження миші
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+// Відстеження миші та дотиків
+function trackMouse(e) {
+    mouse.x = (e.clientX || e.touches[0].clientX) + window.scrollX;
+    mouse.y = (e.clientY || e.touches[0].clientY) + window.scrollY;
     mouse.isTouching = true;
-});
+}
 
-window.addEventListener('mouseup', () => {
-    mouse.isTouching = false;
-});
-
-// Для мобільних пристроїв
-window.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    mouse.x = touch.clientX;
-    mouse.y = touch.clientY;
-    mouse.isTouching = true;
-});
-
-window.addEventListener('touchmove', (e) => {
-    const touch = e.touches[0];
-    mouse.x = touch.clientX;
-    mouse.y = touch.clientY;
-    mouse.isTouching = true;
-});
-
-window.addEventListener('touchend', () => {
-    mouse.x = -9999; // Скидання координат за межі екрана
-    mouse.y = -9999;
-    mouse.isTouching = false; // Вимкнення активності дотику
-});
-
-window.addEventListener('touchcancel', () => {
+function resetMouse() {
     mouse.x = -9999;
     mouse.y = -9999;
     mouse.isTouching = false;
+}
+
+// Події
+window.addEventListener('mousemove', trackMouse);
+window.addEventListener('mouseup', resetMouse);
+window.addEventListener('touchstart', (e) => trackMouse(e.touches[0]));
+window.addEventListener('touchmove', (e) => trackMouse(e.touches[0]));
+window.addEventListener('touchend', resetMouse);
+window.addEventListener('touchcancel', resetMouse);
+window.addEventListener('resize', resizeCanvas);
+
+// Отримуємо кнопку з HTML
+const increaseButton = document.getElementById('morehearts'); // Використовуємо ID кнопки з HTML
+
+// Додаємо обробник події для існуючої кнопки
+increaseButton.addEventListener('click', () => {
+    maxHearts += 100; // Збільшення максимального ліміту сердець
+
+    // Встановлюємо ефект збільшення світіння для всіх сердець
+    hearts.forEach((heart) => {
+        const initialGlow = heart.glowIntensity;
+        const targetGlow = 50; // Максимальна інтенсивність світіння
+        const startTime = performance.now();
+        const glowDuration = 1000; // Тривалість збільшення світіння (1 секунда)
+
+        // Анімація збільшення світіння
+        const increaseGlow = (timestamp) => {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / glowDuration, 1);
+            heart.glowIntensity = initialGlow + (targetGlow - initialGlow) * progress;
+
+            if (progress < 1) {
+                requestAnimationFrame(increaseGlow);
+            } else {
+                // Початок плавного зменшення світіння після завершення збільшення
+                const fadeStartTime = performance.now();
+                const fadeDuration = 3000; // Тривалість затухання (3 секунди)
+                const decreaseGlow = (fadeTimestamp) => {
+                    const fadeElapsed = fadeTimestamp - fadeStartTime;
+                    const fadeProgress = Math.min(fadeElapsed / fadeDuration, 1);
+                    heart.glowIntensity = targetGlow + (10 - targetGlow) * fadeProgress;
+
+                    if (fadeProgress < 1) {
+                        requestAnimationFrame(decreaseGlow);
+                    }
+                };
+                requestAnimationFrame(decreaseGlow);
+            }
+        };
+
+        requestAnimationFrame(increaseGlow);
+    });
 });
 
+// Ініціалізація
+resizeCanvas();
 spawnHearts();
 animate();

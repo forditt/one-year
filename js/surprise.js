@@ -1,9 +1,7 @@
 // Повідомлення, які будуть випадково з’являтися
 const messages = [
-    "1іваіваіваіваіваіваіва",
-    "2іваіваіваіваіваіваіваіваіва",
-    "3іваіваіваіваіваіваіва",
-    "4іваіваіваіваіва"
+    '<p>Серденько спить</p><img src="img/photo_2024-11-17_01-19-19.jpg" alt="Surprise Image 1" class="small-image">',
+    '<p>asdasdasd<p>',
 ];
 
 // Елементи DOM
@@ -15,9 +13,10 @@ const popupClose = document.getElementById('popupClose');
 // Відкрити спливаюче вікно з випадковим повідомленням
 function showSurprise() {
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    popupMessage.textContent = randomMessage;
+    popupMessage.innerHTML = randomMessage; // Використовуйте innerHTML для рендерингу HTML
     popup.classList.remove('hidden');
 }
+
 
 // Закрити спливаюче вікно
 function closePopup() {
