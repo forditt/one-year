@@ -13,23 +13,27 @@
 }
 
 .small-image {
-  width: 400px; /* Встановіть потрібну ширину */
-  height: auto; /* Зберігає пропорції */
-  border-radius: 10px; /* Скруглює краї */
+  width: 100%; /* Займає всю доступну ширину всередині контейнера */
+  max-width: 400px; /* Максимальна ширина для великих екранів */
+  height: auto; /* Зберігає пропорції зображення */
+  border-radius: 10px; /* Скруглені краї */
+  margin: 10px auto; /* Центрує зображення всередині спливаючого вікна */
+  display: block; /* Забезпечує коректне розташування */
 }
 
 .header {
+  display: flex;
+  justify-content: center; /* Центрує текст по горизонталі */
+  align-items: center; /* Центрує текст по вертикалі */
   text-align: center;
   font-family: 'Inter', sans-serif;
-  font-size: 2.0rem;
+  font-size: 2rem;
   color: white;
-  margin-top: 2%;
+  margin: 2% auto; /* Центрує блок на сторінці */
   max-width: 90%;
   word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
-}
-
-::-webkit-scrollbar {
-  display: none;
+  line-height: 1.4; /* Поліпшує читабельність */
+  padding: 10px; /* Додає внутрішні відступи */
 }
 
 canvas {
@@ -56,7 +60,7 @@ canvas {
   color: white;
   font-family: Inter, sans-serif;
   text-align: center;
-  margin: 5vh auto;
+  margin: 0 auto;
 }
 
 /* Вирівнювання таймера */
@@ -101,7 +105,9 @@ canvas {
   box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 155px; /* Фіксована ширина для кнопок */
 }
+
 
 .button:hover {
   transform: scale(1.1);
@@ -138,22 +144,22 @@ canvas {
 
 .popup-content {
   background: rgb(48, 48, 48);
-  padding: 30px; /* Збільшити відступи всередині вікна */
+  padding: 20px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Можна також збільшити розмиття тіні */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   animation: popup-show 0.4s ease forwards;
-  max-width: 450px; /* Збільшити максимальну ширину */
-  width: 170%; /* Встановити ширину вікна на 100% до максимальної */
-  height: auto; /* Дозволяє автоматичне масштабування висоти */
+  max-width: 90%; /* Забезпечує адаптацію для вузьких екранів */
+  width: 100%; /* Використовує доступну ширину */
+  max-height: 80%; /* Висота не перевищує 80% екрану */
+  overflow-y: auto; /* Додає прокрутку, якщо контент перевищує висоту */
 }
 
 .popup-close {
   position: absolute;
-  top: 4px;
-  right: 10px;
+  top: 10px;
+  right: 15px;
   font-size: 24px;
-  font-weight: bold;
   color: #ffffff;
   cursor: pointer;
 }
@@ -162,6 +168,11 @@ canvas {
   font-family: Inter, sans-serif;
   font-size: 1rem;
   color: #ffffff;
+  word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes popup-show {
@@ -213,58 +224,126 @@ canvas {
 }
 
 
+/* Анімації */
+@keyframes popup-show {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+}
+
 /* Адаптивний дизайн */
 @media (max-width: 768px) {
   .header {
-      font-size: 1.8rem;
+    font-size: 1.8rem; /* Зменшуємо шрифт для планшетів */
+    line-height: 1.3; /* Трохи ущільнюємо текст */
+    padding: 8px; /* Зменшуємо відступи */
   }
 
   .glass-box {
-      width: 80%;
-      padding: 15px;
+    width: 90%;
+    padding: 15px;
   }
 
   .button {
-    font-size: 0.9rem; /* Зменшуємо розмір шрифту */
+    font-size: 0.9rem;
     padding: 10px 15px;
-    min-width: 100px; /* Зменшуємо мінімальну ширину */
-    max-width: 150px; /* Максимальна ширина для маленьких екранів */
-}
-.button-group {
+    width: 145px; /* Фіксована ширина для кнопок */
+  }
 
-  gap: 15px;
+  .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .popup-content {
+    max-width: 95%; /* Ширина для планшетів */
+    padding: 15px;
+  }
+
+  #popupMessage {
+    font-size: 0.9rem;
+  }
+
+  .small-image {
+    max-width: 90%; /* Зменшуємо ширину для планшетів */
+    margin: 15px auto;
+  }
 }
-}
+
 
 @media (max-width: 480px) {
   .header {
-      font-size: 1.5rem;
+    font-size: 1.5rem; /* Зменшуємо шрифт для мобільних пристроїв */
+    padding: 5px; /* Мінімальні відступи */
+    margin: 5% auto; /* Додаємо більше простору зверху */
   }
 
-  .glass-box {
-      width: 90%;
-      padding: 10px;
-  }
-  
   .button {
     font-size: 0.8rem;
     padding: 8px 10px;
-    max-width: 130px; /* Максимальна ширина для маленьких екранів */
-    white-space: normal; /* Дозволяє перенос тексту */
-    line-height: 1.2; /* Регулює міжрядковий інтервал */
-    margin: 10px ;
+    line-height: 1.2;
+    width: 125px; /* Фіксована ширина для кнопок */
+    
   }
-  @media (pointer: coarse) {
+
     .button:hover {
-      transform: none;
-      box-shadow: none;
-    }
-  
-    /* Анімація при натисканні (мобільні пристрої) */
-    .button:active {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(153, 153, 153, 0.5);
-      transition: transform 0.5s ease, box-shadow 0.5s ease; /* Повільніша анімація */
-    }
+    transform: none;
+    box-shadow: none;
+  }
+
+  .small-image {
+    max-width: 85%; /* Ширина для мобільних пристроїв */
+    margin: 10px auto;
+    border-radius: 8px; /* Зменшуємо радіус для невеликих екранів */
+  }
+}
+
+.popup-content {
+  max-width: 90%; /* Ширина для мобільних пристроїв */
+  padding: 10px;
+}
+
+.popup-close {
+  font-size: 20px;
+}
+
+#popupMessage {
+  font-size: 0.8rem;
+}
+
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Анімація при натисканні (мобільні пристрої) */
+  .button:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(153, 153, 153, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Повільніша анімація */
   }
 }
