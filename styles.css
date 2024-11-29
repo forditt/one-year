@@ -100,7 +100,6 @@ canvas {
   border-radius: 25px;
   box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
   cursor: pointer;
-  touch-action: manipulation; /* Для правильної обробки дотиків */
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -113,7 +112,6 @@ canvas {
   transform: scale(1.05);
   box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
 }
-
 
 
 
@@ -254,6 +252,19 @@ canvas {
     max-width: 130px; /* Максимальна ширина для маленьких екранів */
     white-space: normal; /* Дозволяє перенос тексту */
     line-height: 1.2; /* Регулює міжрядковий інтервал */
-    margin: 10px 10px;
+    margin: 10px ;
+  }
+  @media (pointer: coarse) {
+    .button:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  
+    /* Анімація при натисканні (мобільні пристрої) */
+    .button:active {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(153, 153, 153, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease; /* Повільніша анімація */
+    }
   }
 }

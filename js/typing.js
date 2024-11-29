@@ -1,4 +1,4 @@
-const text = "Януся, я кохаю тебе ♡";
+const text = "Я кохаю тебе!";
 const typingTextDiv = document.getElementById("typingText");
 
 function typeText() {
