@@ -1,0 +1,375 @@
+ /* Загальний стиль */
+ @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+ 
+ body {
+  margin: 0;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
+  overflow-x: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
+}
+
+.small-image {
+  width: 100%; /* Займає всю доступну ширину всередині контейнера */
+  max-width: 400px; /* Максимальна ширина для великих екранів */
+  height: auto; /* Зберігає пропорції зображення */
+  border-radius: 10px; /* Скруглені краї */
+  margin: 10px auto; /* Центрує зображення всередині спливаючого вікна */
+  display: block; /* Забезпечує коректне розташування */
+}
+
+.header {
+  display: flex;
+  justify-content: center; /* Центрує текст по горизонталі */
+  align-items: center; /* Центрує текст по вертикалі */
+  text-align: center;
+  font-family: "Geologica", sans-serif; 
+  font-style: normal;
+  font-size: 2.5rem;
+  color: white;
+  margin: 2% auto; /* Центрує блок на сторінці */
+  max-width: 90%;
+  word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
+  line-height: 1.4; /* Поліпшує читабельність */
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Стиль для скляного блоку */
+.glass-box {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 25px;
+  background: rgba(71, 71, 71, 0.185);
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 35px;
+  box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
+  color: white;
+  font-family: Inter, sans-serif;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Вирівнювання таймера */
+.timer-text {
+  text-align: left; /* Таймер зліва */
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+/* Основний текст без центрування */
+.main-text {
+  text-align: left; /* Основний текст по лівому краю */
+  line-height: 1.5; /* Міжрядковий інтервал для читабельності */
+  margin-bottom: 20px;
+}
+
+/* Розташування елементів у боксі */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Вирівнювання елементів зліва */
+}
+
+/* Кнопки */
+.button-group {
+  display: flex;
+  flex-direction: row; /* Кнопки розташовані горизонтально */
+  justify-content: flex-end; /* Вирівнюємо кнопки по лівому краю */
+  gap: 15px; /* Відстань між кнопками */
+  width: 100%; /* Щоб кнопки займали всю ширину контейнера */
+}
+
+.button {
+  font-family: Inter, sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  color: white;
+  background: linear-gradient(135deg, #585858, #3b3b3b);
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 155px; /* Фіксована ширина для кнопок */
+}
+
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0px 25px rgba(153, 153, 153, 0.5);
+}
+
+.button:active {
+  transform: scale(1.05);
+  box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
+}
+
+
+
+
+/* Popup styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup-content {
+  background: rgb(48, 48, 48);
+  padding: 40px 30px; /* Відступи */
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: popup-show 0.4s ease forwards;
+  width: 25%; /* Ширина 80% від екрану у звичайному режимі */
+  max-width: 500px; /* Максимальна ширина */
+  max-height: 80%; /* Висота не перевищує 80% екрану */
+  overflow-y: auto; /* Прокрутка для довгого контенту */
+  margin: auto; /* Центрування */
+  font-size: 1;
+  box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold; /* Додано жирність */
+}
+
+#popupMessage p {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  word-wrap: break-word;
+  line-height: 1rem; /* Поліпшення читабельності */
+  font-size: 1rem; /* Змінюємо розмір */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes popup-show {
+  from {
+      transform: scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+/* Анімація появи тексту з м'яким підйомом і кольором */
+@keyframes typing-effect {
+  0% {
+    opacity: 0;
+    color: #000000; /* Початковий колір */
+  }
+  50% {
+    color: #5e5e5e; /* М’який колір у середині */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Повернення на місце */
+    color: #ffffff; /* Кінцевий колір */
+  }
+}
+
+/* Базовий стиль для тексту */
+#typingText span {
+  opacity: 0; /* Початково прихований текст */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Невеликий зсув для створення ефекту */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0; /* Початковий стан - приховано */
+  animation: fade-in 1s ease-out forwards;
+}
+
+
+/* Анімації */
+@keyframes popup-show {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.8rem; /* Зменшуємо шрифт для планшетів */
+    line-height: 1.3; /* Трохи ущільнюємо текст */
+    padding: 8px; /* Зменшуємо відступи */
+  }
+
+  .glass-box {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .button {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    width: 145px; /* Фіксована ширина для кнопок */
+  }
+
+  .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .popup-content {
+    padding: 30px 20px; /* Менші відступи */
+    max-width: 90%; /* Ширина для планшетів */
+    border-radius: 12px; /* Менші кути */
+  }
+
+  #popupMessage p {
+    font-size: 1.5rem; /* Фіксований розмір для планшетів */
+    line-height: 1.4;
+  }
+
+  .popup-close {
+    font-size: 22px;
+    top: 12px;
+    right: 15px;
+  }
+
+  .small-image {
+    max-width: 90%; /* Зменшуємо ширину для планшетів */
+    margin: 15px auto;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 1.5rem; /* Зменшуємо шрифт для мобільних пристроїв */
+    padding: 5px; /* Мінімальні відступи */
+    margin: 5% auto; /* Додаємо більше простору зверху */
+  }
+
+  .button {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    line-height: 1.2;
+    width: 125px; /* Фіксована ширина для кнопок */
+    
+  }
+
+    .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .small-image {
+    max-width: 85%; /* Ширина для мобільних пристроїв */
+    margin: 10px auto;
+    border-radius: 8px; /* Зменшуємо радіус для невеликих екранів */
+  }
+}
+
+.popup-content {
+  width: 95%; /* Більш вузький вигляд */
+  padding: 20px 15px; /* Відступи для мобільних пристроїв */
+  border-radius: 10px; /* Зменшено радіус */
+}
+
+#popupMessage p{
+  font-size: 1.2rem;
+  line-height: 1.3; /* Щільніший текст */
+}
+
+.popup-close {
+  font-size: 20px;
+  top: 10px;
+  right: 15px;
+}
+
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Анімація при натисканні (мобільні пристрої) */
+  .button:active {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(153, 153, 153, 0.5);
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Повільніша анімація */
+  }
+}
+
+body, a, input, textarea, button * {
+  -webkit-touch-callout: none; /* Забороняє контекстне меню на iOS */
+  -webkit-tap-highlight-color: transparent; /* Забирає виділення */
+  outline: none; /* Для усунення стандартного виділення */
+}
