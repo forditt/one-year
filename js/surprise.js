@@ -1,7 +1,6 @@
 // Повідомлення, які будуть випадково з’являтися
 const messages = [
     '<p>Серденько спить</p><img src="img/photo_2024-11-17_01-19-19.jpg" alt="Surprise Image 1" class="small-image">',
-    '<p>asdasdasd<p>',
 ];
 
 // Елементи DOM

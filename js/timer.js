@@ -4,23 +4,17 @@ function updateTime() {
     const now = new Date();
     const diff = now - startDate;
 
-    // Рахуємо кількість днів, годин, хвилин і секунд
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    // Обчислюємо загальну кількість хвилин
-    const totalMinutes = Math.floor(diff / (1000 * 60));
-
     const timeTogether = `
-    Ми разом: ${days} днів - ${hours} / ${minutes} / ${seconds} 
+    Ми разом: ${days} днів, ${hours} годин, ${minutes} хвилин, ${seconds} секунд
     `;
 
-    document.getElementById('timeTogether').innerHTML = timeTogether; // Використовуємо innerHTML, щоб дозволити HTML-розмітку (наприклад, <br> для переносу рядка)
+    document.getElementById('timeTogether').textContent = timeTogether;
 }
- //    <br>Загальна кількість хвилин: ${totalMinutes} хв
-    
-// Оновлення часу кожну секунду
+
 setInterval(updateTime, 1000);
 updateTime();

@@ -1,9 +1,5 @@
-// Знаходимо canvas та отримуємо контекст
 const canvas = document.getElementById('heartCanvas');
 const ctx = canvas.getContext('2d');
-
-// Знаходимо елемент "glass-box"
-const glassBox = document.querySelector('.glass-box');
 
 // Налаштування canvas на розміри сторінки
 function resizeCanvas() {
@@ -13,7 +9,7 @@ function resizeCanvas() {
 
 // Параметри
 const hearts = [];
-let maxHearts = 25; // Змінна для кількості сердець
+const maxHearts = 150;
 const mouse = {
     x: -9999,
     y: -9999,
@@ -148,49 +144,6 @@ window.addEventListener('touchmove', (e) => trackMouse(e.touches[0]));
 window.addEventListener('touchend', resetMouse);
 window.addEventListener('touchcancel', resetMouse);
 window.addEventListener('resize', resizeCanvas);
-
-// Отримуємо кнопку з HTML
-const increaseButton = document.getElementById('morehearts'); // Використовуємо ID кнопки з HTML
-
-// Додаємо обробник події для існуючої кнопки
-increaseButton.addEventListener('click', () => {
-    maxHearts += 100; // Збільшення максимального ліміту сердець
-
-    // Встановлюємо ефект збільшення світіння для всіх сердець
-    hearts.forEach((heart) => {
-        const initialGlow = heart.glowIntensity;
-        const targetGlow = 50; // Максимальна інтенсивність світіння
-        const startTime = performance.now();
-        const glowDuration = 1000; // Тривалість збільшення світіння (1 секунда)
-
-        // Анімація збільшення світіння
-        const increaseGlow = (timestamp) => {
-            const elapsed = timestamp - startTime;
-            const progress = Math.min(elapsed / glowDuration, 1);
-            heart.glowIntensity = initialGlow + (targetGlow - initialGlow) * progress;
-
-            if (progress < 1) {
-                requestAnimationFrame(increaseGlow);
-            } else {
-                // Початок плавного зменшення світіння після завершення збільшення
-                const fadeStartTime = performance.now();
-                const fadeDuration = 3000; // Тривалість затухання (3 секунди)
-                const decreaseGlow = (fadeTimestamp) => {
-                    const fadeElapsed = fadeTimestamp - fadeStartTime;
-                    const fadeProgress = Math.min(fadeElapsed / fadeDuration, 1);
-                    heart.glowIntensity = targetGlow + (10 - targetGlow) * fadeProgress;
-
-                    if (fadeProgress < 1) {
-                        requestAnimationFrame(decreaseGlow);
-                    }
-                };
-                requestAnimationFrame(decreaseGlow);
-            }
-        };
-
-        requestAnimationFrame(increaseGlow);
-    });
-});
 
 // Ініціалізація
 resizeCanvas();
