@@ -3,14 +3,13 @@
  @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
  
  body {
-  margin: 0;
   background: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: auto;
   min-height: 100vh;
+  min-width: 38vh;
   overflow-y: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
   overflow-x: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
 }
@@ -19,15 +18,11 @@
   display: flex;
   justify-content: center; /* Центрує текст по горизонталі */
   align-items: center; /* Центрує текст по вертикалі */
-  text-align: center;
   font-family: "Geologica", sans-serif; 
-  font-style: normal;
   font-size: 2.1rem;
   color: white;
-  margin: 2% auto; /* Центрує блок на сторінці */
   max-width: 90%;
   word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
-  line-height: 1; /* Поліпшує читабельність */
 }
 
 canvas {
@@ -37,9 +32,7 @@ canvas {
 }
 
 .glass-box {
-  overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word;
   position: relative;
   width: 100%;
   max-width: 600px;
@@ -48,12 +41,10 @@ canvas {
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 35px;
+  border-radius: 30px;
   box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
   color: white;
   font-family: Inter, sans-serif;
-  text-align: center;
-  margin: 0 auto;
 }
 
 
@@ -66,7 +57,6 @@ canvas {
 
 /* Основний текст без центрування */
 .main-text {
-  text-align: left; /* Основний текст по лівому краю */
   line-height: 1.3; /* Міжрядковий інтервал для читабельності */
   margin-bottom: 20px;
 }
@@ -75,26 +65,27 @@ p.main-text {
   margin-bottom: 16px; /* Відступ між абзацами */
   text-align: justify; /* Вирівнювання по ширині */
   font-size: 16px; /* Розмір тексту */
+  text-align: left; /* Основний текст по лівому краю */
+
 }
 
 #timeTogether {
   font-weight: bold; /* Жирний текст */
   font-size: 18px; /* Збільшений розмір */
-  margin-bottom: 0px; /* Відступ знизу */
 }
 
 /* Кнопки */
 .button-group {
   display: flex;
   flex-direction: row; /* Кнопки розташовані горизонтально */
-  justify-content: flex-end; /* Вирівнюємо кнопки по лівому краю */
+  justify-content: flex-end; /* Вирівнюємо кнопки по  краю */
   gap: 15px; /* Відстань між кнопками */
   width: 100%; /* Щоб кнопки займали всю ширину контейнера */
 }
 
 .button {
   font-family: Inter, sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   padding: 10px 20px;
   color: white;
   background: linear-gradient(135deg, #585858, #3b3b3b);
@@ -102,7 +93,7 @@ p.main-text {
   border-radius: 25px;
   box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
   transition: transform 0.3s, box-shadow 0.3s;
-  width: 155px; /* Фіксована ширина для кнопок */
+  width: 167px; /* Фіксована ширина для кнопок */
 }
 
 
@@ -116,22 +107,8 @@ p.main-text {
   box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
 }
 
-/* Анімація появи тексту з м'яким підйомом і кольором */
-
-/* Базовий стиль для тексту */
 #typingText span {
   opacity: 0; /* Початково прихований текст */
-}
-
-.fade-in {
-  opacity: 0; /* Початковий стан - приховано */
-  animation: fade-in 1s ease-out forwards;
-}
-
-
-.fade-in {
-  opacity: 0;
-  animation: fade-in 1s ease-out forwards;
 }
 
 body, a, input, textarea, button * {

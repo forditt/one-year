@@ -1,3 +1,19 @@
+#popupMessage.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out forwards;
+}
+
+.fade-in {
+  opacity: 0; /* Початковий стан - приховано */
+  animation: fade-in 1s ease-out forwards;
+}
+
+
 @keyframes popup-show {
     from {
       transform: scale(0.8);
