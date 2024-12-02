@@ -57,21 +57,15 @@ canvas {
 
 /* Основний текст без центрування */
 .main-text {
-  line-height: 1.3; /* Міжрядковий інтервал для читабельності */
+  line-height: 1.2; /* Міжрядковий інтервал для читабельності */
   margin-bottom: 20px;
-}
-
-p.main-text {
-  margin-bottom: 16px; /* Відступ між абзацами */
-  text-align: justify; /* Вирівнювання по ширині */
-  font-size: 16px; /* Розмір тексту */
-  text-align: left; /* Основний текст по лівому краю */
-
+  text-align: justify;
+  font-size: 18px; /* Розмір тексту */
 }
 
 #timeTogether {
   font-weight: bold; /* Жирний текст */
-  font-size: 18px; /* Збільшений розмір */
+  font-size: 20px; /* Збільшений розмір */
 }
 
 /* Кнопки */
@@ -81,6 +75,7 @@ p.main-text {
   justify-content: flex-end; /* Вирівнюємо кнопки по  краю */
   gap: 15px; /* Відстань між кнопками */
   width: 100%; /* Щоб кнопки займали всю ширину контейнера */
+  padding-top: 15px;
 }
 
 .button {

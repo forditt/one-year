@@ -34,6 +34,12 @@
     #popupMessage p {
         font-size: 1.2rem;
     }
+    
+    #text1{
+        text-align: justify;
+        margin: 0 0%; 
+        font-size: 1.2rem;
+    }
 }
 
 /* Адаптивність для мобільних пристроїв (max-width: 480px) */

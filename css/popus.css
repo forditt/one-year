@@ -12,6 +12,12 @@
     box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
   }
 
+#text1{
+    text-align: justify;
+    margin: 0 20%; 
+    font-size: 1.2rem;
+}
+
 .popup {
     position: fixed;
     top: 0;
