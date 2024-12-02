@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
             text: '<p>adadsads соромно</p>',
             imgSrc: '',
         },
+        {
+            text: '<p>Є речі за які мфівфівфівфівфівмно</p>',
+            imgSrc: 'img/istockphoto-1160946557-612x612.jpg',
+        },
     ];
 
     // Для зберігання останнього показаного індексу
@@ -99,11 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
     surpriseButton.addEventListener('click', showSurprise); // Відкрити вікно
     popupClose.addEventListener('click', closePopup); // Закрити вікно
     refreshButton.addEventListener('click', showRandomMessage); // Оновити вміст
-
-    // Закриття при кліку поза вікном
-    window.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            closePopup();
-        }
-    });
 });

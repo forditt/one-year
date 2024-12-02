@@ -49,8 +49,8 @@
     padding: 20px;
     text-align: center;
     animation: popup-show 0.4s ease forwards;
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 100%;
     max-height: 80%;
     overflow-y: auto;
     font-size: 1rem;
@@ -126,7 +126,7 @@
   }
 
 /* Адаптивність */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (max-width: 768px) and (max-width: 768px) {
     .popup-content {
         padding: 25px;
         border-radius: 12px;
@@ -136,6 +136,7 @@
         font-size: 1.2rem;
     }
 }
+
 
 @media (max-width: 480px) {
     .popup-content {
@@ -153,5 +154,16 @@
     .popup-refresh {
         width: 30px;
         height: 30px;
+        
     }
+
+    .popup-refresh {
+        right: 65px;
+    }
+
+    .popup-close:hover,
+    .popup-refresh:hover {
+        transform: none;
+        }
+        
 }
