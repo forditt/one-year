@@ -1,0 +1,36 @@
+@keyframes popup-show {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Невеликий зсув для створення ефекту */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes typing-effect {
+    0% {
+      opacity: 0;
+      color: #000000; /* Початковий колір */
+    }
+    50% {
+      color: #5e5e5e; /* М’який колір у середині */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Повернення на місце */
+      color: #ffffff; /* Кінцевий колір */
+    }
+  }
