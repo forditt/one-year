@@ -75,29 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Відкрити спливаюче вікно та приховати елементи
-    function showSurprise() {
-        popupMessage.innerHTML = ''; // Скидаємо попередній вміст
+// Відкрити спливаюче вікно та приховати елементи
+function showSurprise() {
+    popupMessage.innerHTML = ''; // Скидаємо попередній вміст
 
-        // Додаємо клас для приховування
-        hideableElements.forEach(element => {
-            element.classList.add('hidden');
-        });
+    // Додаємо клас для приховування елементів
+    hideableElements.forEach(element => {
+        element.classList.add('hidden');
+    });
 
-        // Показуємо попап
-        popup.classList.remove('hidden'); 
-        showRandomMessage();
-    }
+    // Забороняємо прокрутку
+    document.body.classList.add('no-scroll');
 
-    // Закрити спливаюче вікно та відновити елементи
-    function closePopup() {
-        popup.classList.add('hidden');
-        
-        // Показуємо елементи назад
-        hideableElements.forEach(element => {
-            element.classList.remove('hidden');
-        });
-    }
+    // Показуємо попап
+    popup.classList.remove('hidden');
+    showRandomMessage();
+}
+
+// Закрити спливаюче вікно та відновити елементи
+function closePopup() {
+    popup.classList.add('hidden');
+
+    // Дозволяємо прокрутку
+    document.body.classList.remove('no-scroll');
+
+    // Показуємо елементи назад
+    hideableElements.forEach(element => {
+        element.classList.remove('hidden');
+    });
+}
 
     // Прив’язка подій
     surpriseButton.addEventListener('click', showSurprise); // Відкрити вікно

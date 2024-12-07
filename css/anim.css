@@ -3,7 +3,6 @@
   transition: opacity 1s ease-in-out forwards;
 }
 #play-audio {
-
   transition: opacity 0.5s ease, transform 0.3s ease;
 }
 

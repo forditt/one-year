@@ -14,15 +14,19 @@
   overflow-x: hidden; /* Додає прокрутку, якщо елементи перевищують висоту екрану */
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .header {
   display: flex;
-  justify-content: center; /* Центрує текст по горизонталі */
-  align-items: center; /* Центрує текст по вертикалі */
+  justify-content: center;
+  align-items: center;
   font-family: "Geologica", sans-serif; 
   font-size: 2.2rem;
-  color: rgb(255, 255, 255);
+  color: #fff;
   max-width: 90%;
-  word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
+  word-wrap: break-word;
   padding: 15px;
 }
 
@@ -35,18 +39,16 @@ canvas {
 
 
 .glass-box {
-  word-wrap: break-word;
   position: relative;
   width: 100%;
   max-width: 700px;
   padding: 25px;
   background: rgba(60, 60, 60, 0.185);
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
+  backdrop-filter: blur(4px);
   border: 1px solid rgba(89, 89, 89, 0.677);
   border-radius: 25px;
-  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.161);
-  color: rgba(255, 255, 255, 0.901);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.161);
+  color: rgba(255, 255, 255, 0.9);
   font-family: Inter, sans-serif;
 }
 
