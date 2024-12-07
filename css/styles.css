@@ -3,7 +3,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
  
  body {
-  background: black;
+  background: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,10 +19,11 @@
   justify-content: center; /* Центрує текст по горизонталі */
   align-items: center; /* Центрує текст по вертикалі */
   font-family: "Geologica", sans-serif; 
-  font-size: 2.1rem;
-  color: white;
+  font-size: 2.2rem;
+  color: rgb(255, 255, 255);
   max-width: 90%;
   word-wrap: break-word; /* Запобігає виходу тексту за межі блоку */
+  padding: 15px;
 }
 
 canvas {
@@ -31,19 +32,21 @@ canvas {
   left: 0;
 }
 
+
+
 .glass-box {
   word-wrap: break-word;
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   padding: 25px;
-  background: rgba(71, 71, 71, 0.185);
+  background: rgba(60, 60, 60, 0.185);
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
-  box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
-  color: white;
+  border: 1px solid rgba(89, 89, 89, 0.677);
+  border-radius: 25px;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.161);
+  color: rgba(255, 255, 255, 0.901);
   font-family: Inter, sans-serif;
 }
 
@@ -52,7 +55,7 @@ canvas {
 .timer-text {
   text-align: left; /* Таймер зліва */
   font-size: 1rem;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.901);
 }
 
 /* Основний текст без центрування */
@@ -98,7 +101,7 @@ canvas {
 }
 
 .button:active {
-  transform: scale(1.05);
+  transform: scale(1.2);
   box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
 }
 

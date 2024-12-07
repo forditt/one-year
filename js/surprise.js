@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 popupMessage.innerHTML = generateHTML(randomMessage); // Формуємо HTML динамічно
                 popupMessage.classList.remove('fade-out'); // Показати плавно
-            }, 400); // Час для завершення fade-out
+            }, 300); // Час для завершення fade-out
         });
     }
 

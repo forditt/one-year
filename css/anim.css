@@ -2,6 +2,16 @@
   opacity: 0;
   transition: opacity 1s ease-in-out forwards;
 }
+#play-audio {
+
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+#play-audio.fade-out {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
 
 .fade-out {
   opacity: 0;
@@ -11,6 +21,11 @@
 .fade-in {
   opacity: 0; /* Початковий стан - приховано */
   animation: fade-in 1s ease-out forwards;
+}
+
+.fade-in2 {
+  opacity: 0; /* Початковий стан - приховано */
+  animation: fade-in2 1.5s ease-out forwards;
 }
 
 
@@ -29,6 +44,17 @@
     from {
       opacity: 0;
       transform: translateY(20px); /* Невеликий зсув для створення ефекту */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in2 {
+    from {
+      opacity: 0;
+      transform: translateY(30px); /* Невеликий зсув для створення ефекту */
     }
     to {
       opacity: 1;

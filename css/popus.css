@@ -9,7 +9,7 @@
     border-radius: 25px; /* Скруглені краї */
     margin: auto; /* Центрує зображення всередині спливаючого вікна */
     display: block; /* Забезпечує коректне розташування */
-    box-shadow: 0 0px 30px rgba(87, 87, 87, 0.2);
+    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.5);
   }
 
 #text1{
@@ -24,12 +24,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(60, 60, 60, 0);
+
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.7s ease;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -56,6 +57,7 @@
 /* Кнопки управління */
 .popup-close,
 .popup-refresh {
+    
     position: fixed;
     top: 15px;
     background: none;
