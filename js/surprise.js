@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imgSrc: 'img/photo_2024-12-08_10-27-49.jpg'
         }, 
         {
-            text: '<p>Фемінний хлопчик/p>',
+            text: '<p>Фемінний хлопчик</p>',
             imgSrc: 'img/photo_2024-12-08_10-27-47.jpg'
         }, 
         {
