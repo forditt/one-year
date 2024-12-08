@@ -317,6 +317,40 @@ document.addEventListener('DOMContentLoaded', () => {
             text: '<p>хі</p>',
             imgSrc: 'img/photo_2024-11-09_22-17-55.jpg'
         }, 
+        {
+            text: '<p>Ти так мило дрімаєш біля мене</p>',
+            imgSrc: 'img/photo_2024-12-08_10-28-00.jpg'
+        }, 
+        {
+            text: '<p>Подивись який серйозний</p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-58.jpg'
+        }, 
+        {
+            text: '<p>Наш Олаф</p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-55.jpg'
+        }, 
+
+        {
+            text: '<p>Так люблю це фото</p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-52.jpg'
+        }, 
+        {
+            text: '<p>Коли я не побриюсь, виглядаю старшим</p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-49.jpg'
+        }, 
+        {
+            text: '<p>Фемінний хлопчик/p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-47.jpg'
+        }, 
+        {
+            text: '<p>Хто, де?</p>',
+            imgSrc: 'img/photo_2024-12-08_10-27-43.jpg'
+        }, 
+        {
+            text: '<p>Знімок NASA в день коли ми почали зустрічатись</p>',
+            imgSrc: 'img/photo_2024-01-27_17-28-26.jpg'
+        }, 
+
     ];
 
      // Змінні для збереження стану
