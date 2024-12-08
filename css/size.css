@@ -1,0 +1,122 @@
+/* Адаптивність для планшетів (max-width: 768px) */
+@media (max-width: 768px) {
+    .header {
+        font-size: 2.0rem; /* Шрифт для планшетів */
+        line-height: 1.3;
+        padding: 8px;
+    }
+
+    .glass-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+
+
+    .button-group {
+        justify-content: center; /* Вирівнюємо кнопки по  краю */
+      }
+
+    .button:hover {
+        transform: none;
+        box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
+    }
+
+    body {
+        overflow-y: auto; /* Прокрутка, якщо елементи виходять за межі екрану */
+        overflow-x: none; /* Прокрутка, якщо елементи виходять за межі екрану */
+        
+    }
+
+    .popup-content {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+
+    .button:active {
+        transform: scale(1.2);
+        box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
+      }
+
+      #popupMessage {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.3rem;
+        opacity: 1;
+        color: #ffffff;
+        line-height: 1.5;
+        transition: opacity 0.4s ease-in-out;
+    }
+      
+}
+
+/* Адаптивність для мобільних пристроїв (max-width: 480px) */
+@media (max-width: 480px) {
+    .header {
+        font-size: 2.0rem; /* Шрифт для планшетів */
+        line-height: 1.3;
+        padding: 8px;
+    }
+
+    .glass-box {
+        width: 90%;
+        padding: 15px;
+        
+    }
+
+    .button-group {
+        justify-content: center; /* Вирівнюємо кнопки по  краю */
+      }
+
+    body {
+        overflow-y: auto; /* Прокрутка, якщо елементи виходять за межі екрану */
+        overflow-x: none; /* Прокрутка, якщо елементи виходять за межі екрану */
+    }
+
+    .popup-content {
+        width: 95%;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .popup-close,
+    .popup-refresh {
+        width: 30px;
+        height: 30px;
+    }
+
+    .popup-close:active,
+    .popup-refresh:active {
+        transform: scale(1);
+    }
+
+    .button:hover {
+        transform: none;
+        box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
+    }
+
+    .button:active {
+        transform: scale(1.02);
+        box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
+      }
+      
+
+    .popup-refresh {
+        right: 65px;
+    }
+
+
+    .popup-close:hover,
+    .popup-refresh:hover {
+        transform: none;
+    }
+
+    #popupMessage {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.3rem;
+        opacity: 1;
+        color: #ffffff;
+        line-height: 1.5;
+        transition: opacity 0.4s ease-in-out;
+    }
+}

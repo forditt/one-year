@@ -1,0 +1,126 @@
+ /* Загальний стиль */
+ @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Geologica:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+ 
+ body {
+  background: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  min-width: 38vh;
+  overflow-y: hidden; 
+  overflow-x: hidden; 
+  
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Geologica", sans-serif; 
+  font-size: 2.2rem;
+  color: #fff;
+  max-width: 90%;
+  word-wrap: break-word;
+  padding: 15px;
+  white-space: nowrap; /* Забороняє перенесення тексту */
+
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+.glass-box {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  min-width: 310px; /* Мінімальна ширина */
+  padding: 25px;
+  background: rgba(60, 60, 60, 0.185);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(89, 89, 89, 0.677);
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.161);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Inter, sans-serif;
+}
+
+
+/* Вирівнювання таймера */
+.timer-text {
+  text-align: left; /* Таймер зліва */
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.901);
+}
+
+/* Основний текст без центрування */
+.main-text {
+  line-height: 1.2; /* Міжрядковий інтервал для читабельності */
+  margin-bottom: 20px;
+  text-align: justify;
+  font-size: 18px; /* Розмір тексту */
+}
+
+#timeTogether {
+  font-weight: bold; /* Жирний текст */
+  font-size: 20px; /* Збільшений розмір */
+}
+
+/* Кнопки */
+.button-group {
+  display: flex;
+  flex-direction: row; /* Кнопки розташовані горизонтально */
+  justify-content: flex-end; /* Вирівнюємо кнопки по  краю */
+  gap: 15px; /* Відстань між кнопками */
+  width: 100%; /* Щоб кнопки займали всю ширину контейнера */
+  padding-top: 15px;
+}
+
+.button {
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  padding: 10px 20px;
+  color: white;
+  background: linear-gradient(135deg, #585858, #3b3b3b);
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 167px; /* Фіксована ширина для кнопок */
+}
+
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0px 25px rgba(153, 153, 153, 0.5);
+}
+
+.button:active {
+  transform: scale(1.2);
+  box-shadow: 0 0px 20px rgba(77, 77, 77, 0.5);
+}
+
+#typingText span {
+  opacity: 0; /* Початково прихований текст */
+}
+
+body, a, input, textarea, button * {
+  -webkit-touch-callout: none; /* Забороняє контекстне меню на iOS */
+  -webkit-tap-highlight-color: transparent; /* Забирає виділення */
+  outline: none; /* Для усунення стандартного виділення */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

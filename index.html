@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Кохаю тебе!</title>
+
+    <link rel="icon" href="icons/1.png">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/popus.css">
+    <link rel="stylesheet" href="css/size.css">
+    <link rel="stylesheet" href="css/anim.css">
+      
+</head>
+<body>
+
+  <audio id="background-audio" loop>
+    <source src="audio/present-128-ytshorts.savetube.me.mp3" type="audio/mpeg">
+    Ваш браузер не підтримує аудіо.
+  </audio>
+
+    <header class="header fade-in2 hideable">
+        <h2>Кохаю тебе!</h2>
+        
+    </header>
+
+    <canvas id="heartCanvas"></canvas>
+    <div class="glass-box fade-in hideable">
+
+        <div class="content-wrapper">
+            <p id="timeTogether" class="timer-text"></p>
+                <p class="main-text">  
+                    Знаєш, мені так приємно говорити "я тебе люблю" і чути у відповідь взаємність. Знаєш, я все ще люблю тебе так само сильно, як любив раніше, та навіть більше, хоча здавалося, а куди ще? Знаєш, я люблю кожен сантиметр твоєї душі і тіла.  
+                </p>  
+                <p class="main-text">  
+                    Навіть від думки про те, що ми вже рік разом, у мене мурашки пробігають. Скільки днів життя я провів у надії, що це взаємно... Мої надії були не просто думками — вони стали реальністю. Ти в моєму серці, як перший маленький сніг, який розростається ближче до ночі, як запах кави. Моя маленька ніжна принцеса зі своїми мріями, страхами, бажаннями, яка завжди біжить до мене. Твоє тепле серце змушує танути сніжинки на моїх холодних долонях. Ти береш мене за руку, і весь світ завмирає, а наші погляди зустрічаються, сповнені усмішок.  
+                    Кожне свято стає приводом для ще одного заповітного бажання: "Нехай ми завжди будемо разом". Я так хочу бути поряд. Я кохаю тебе, Яна: твої красиві карі оченята, ніжне личко, руки, волосся, запах який для мене такий домашній і рідний.  
+                </p>  
+                <p class="main-text">  
+                    Ти — моя сім'я! І це далеко не останній наш рік разом. Кохаю тебе, моє серденько! 
+                </p>
+
+        </div>
+
+        <div class="button-group">
+            <button class="popup-close" id="play-audio">                        
+                <img src="icons/volume-max-svgrepo-com.svg" alt="Звук">
+            </button>
+            <button class="button" id="surpriseButton">Подорож часом</button>
+            <button class="button" id="morehearts">Більше любові</button>
+        </div>
+    </div>
+
+    <div id="popup" class="popup hidden">
+
+                    <button class="popup-close" id="popupClose">
+                        <img src="icons/xmark-large-svgrepo-com.svg" alt="Закрити">
+                    </button>
+                    <button class="popup-refresh" id="refreshButton">
+                        <img src="icons/refresh-cw-svgrepo-com.svg" alt="Оновити">
+                    </button>
+        <div class="popup-content">
+
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+
+    <script src="js/hearts.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/typing.js"></script>
+    <script src="js/surprise.js"></script>
+    <script src="js/fadeIn.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/audio.js"></script>
+</body>
+</html>
