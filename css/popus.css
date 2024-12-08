@@ -95,6 +95,7 @@
     width: 100%;
     height: 100%;
     filter: brightness(0) invert(1);
+    opacity: 0.75; 
     object-fit: contain;
 }
 
@@ -113,7 +114,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 1.5rem;
     opacity: 1;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.5;
     transition: opacity 0.4s ease-in-out;
 }

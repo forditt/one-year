@@ -47,7 +47,7 @@ canvas {
   max-width: 700px;
   min-width: 310px; /* Мінімальна ширина */
   padding: 25px;
-  background: rgba(60, 60, 60, 0.185);
+  background: rgba(255, 255, 255, 0.055);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(89, 89, 89, 0.677);
   border-radius: 25px;
@@ -98,6 +98,7 @@ canvas {
   box-shadow: 0 0px 15px rgba(77, 77, 77, 0.5);
   transition: transform 0.3s, box-shadow 0.3s;
   width: 167px; /* Фіксована ширина для кнопок */
+  opacity: 0.9; 
 }
 
 
